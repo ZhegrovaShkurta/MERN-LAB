@@ -1,0 +1,178 @@
+/* App.css */
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #4f0716;
+  color: #fff;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  margin: 0 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* AuthForm styles */
+.auth-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.auth-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.auth-button {
+  padding: 0.5rem 1rem;
+  background-color: #053261;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toggle-auth {
+  margin-top: 1rem;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #061a2f;
+  cursor: pointer;
+}
+
+.message {
+  color: #ff0000;
+}
+
+/* BookingForm styles */
+.booking-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.booking-form h2 {
+  margin-bottom: 1rem;
+}
+
+.submit-button {
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.success-message {
+  margin-top: 1rem;
+  color: #28a745;
+}
+
+/* App.css */
+
+/* BookingFormContainer styles */
+.booking-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.welcome-message {
+  margin-bottom: 2rem;
+}
+
+.welcome-message h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-message p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.icons {
+  font-size: 2rem;
+  color: #007bff;
+}
+
+.icon {
+  margin: 0 1rem;
+}
+
+.hotel-icon {
+  color: #ff5733; /* Example color for hotel icon */
+}
+
+.beach-icon {
+  color: #1e90ff; /* Example color for beach icon */
+}
+
+/* BookingForm styles */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-form h2 {
+  margin-bottom: 1rem;
+}
+
+.submit-button {
+  padding: 0.5rem 1rem;
+  background-color: #0f4f1e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.success-message {
+  margin-top: 1rem;
+  color: #105320;
+}
