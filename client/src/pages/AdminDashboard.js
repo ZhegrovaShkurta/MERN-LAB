@@ -5,6 +5,7 @@ import * as XLSX from 'xlsx';
 const AdminDashboard = () => {
   const [posts, setPosts] = useState([]);
   const [rentals, setRentals] = useState([]);
+  const [importedData, setImportedData] = useState([]);
 
   // Fetch posts for admin
   useEffect(() => {
@@ -43,31 +44,49 @@ const AdminDashboard = () => {
 
   // Export data to Excel
   const exportToExcel = () => {
-    // Create worksheet for posts
     const postsData = posts.map(post => ({
       Title: post.title,
       Content: post.content,
     }));
 
-    // Create worksheet for rentals
     const rentalsData = rentals.map(rental => ({
       'Car Model': rental.carModel,
       'Pick-up Location': rental.pickupLocation,
       'Drop-off Location': rental.dropoffLocation,
     }));
 
-    // Create a new workbook
     const workbook = XLSX.utils.book_new();
 
-    // Add both sheets to the workbook
     const postsSheet = XLSX.utils.json_to_sheet(postsData);
     const rentalsSheet = XLSX.utils.json_to_sheet(rentalsData);
 
     XLSX.utils.book_append_sheet(workbook, postsSheet, 'Posts');
     XLSX.utils.book_append_sheet(workbook, rentalsSheet, 'Car Rentals');
 
-    // Export the workbook
     XLSX.writeFile(workbook, 'AdminData.xlsx');
+  };
+
+  // Import data from Excel
+  const importFromExcel = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const data = new Uint8Array(event.target.result);
+      const workbook = XLSX.read(data, { type: 'array' });
+
+      // Assuming the first sheet contains relevant data
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+
+      // Parse data from sheet
+      const importedData = XLSX.utils.sheet_to_json(worksheet);
+
+      console.log('Imported data:', importedData);
+      setImportedData(importedData);  // Set the imported data to state
+    };
+
+    reader.readAsArrayBuffer(file);
   };
 
   return (
@@ -132,6 +151,36 @@ const AdminDashboard = () => {
       <button onClick={exportToExcel} style={styles.exportButton}>
         Export Data to Excel
       </button>
+
+      {/* Input to Import Data from Excel */}
+      <input type="file" onChange={importFromExcel} style={styles.importInput} />
+
+      {/* Display Imported Data */}
+      {importedData.length > 0 && (
+        <section style={styles.section}>
+          <h2 style={styles.sectionHeader}>Imported Data</h2>
+          <div style={styles.tableContainer}>
+            <table style={styles.table}>
+              <thead>
+                <tr>
+                  {Object.keys(importedData[0]).map((key) => (
+                    <th key={key} style={styles.tableHeader}>{key}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {importedData.map((row, index) => (
+                  <tr key={index}>
+                    {Object.values(row).map((value, i) => (
+                      <td key={i} style={styles.tableCell}>{value}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
@@ -153,7 +202,11 @@ const styles = {
     border: 'none',
     cursor: 'pointer',
   },
+  importInput: {
+    marginTop: '20px',
+    padding: '10px',
+    cursor: 'pointer',
+  },
 };
 
 export default AdminDashboard;
-
